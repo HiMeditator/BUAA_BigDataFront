@@ -1,32 +1,44 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <top-banner />
+    <div class="main-struct clearfix">
+      <div style="height:40px;"></div>
+      <router-view />
+    </div>
+    <bottom-banner />
   </div>
 </template>
 
+<script>
+import TopBanner from "./components/TopBanner.vue"
+import BottomBanner from "./components/BottomBanner.vue"
+export default {
+  components: { TopBanner, BottomBanner },
+}
+</script>
+
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import './assets/css/normalize.css';
+
+::-webkit-scrollbar {
+  display: none;
 }
 
-nav {
-  padding: 30px;
+.main-struct {
+  height: 100%;
+  min-height: calc(100vh);
+  width: 72%;
+  margin: auto;
+  background-color: white;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.2),
+  -4px -4px 12px rgba(0, 0, 0, 0.2);
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.clearfix::before,
+.clearfix::after{
+    content: '';
+    display: table;
+    clear: both;
 }
 </style>
