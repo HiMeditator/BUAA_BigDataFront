@@ -9,8 +9,8 @@
         <span>功能介绍</span> |
         <span>帮助中心</span> |
         <span>用户文档</span> |
-        <span>联系我们</span> |
-        <span>关于我们</span>
+        <span>这些链接</span> |
+        <span>只是装饰</span>
       </p>
       <p>
         Powered by 2022-2023 Data-Exp-Group26

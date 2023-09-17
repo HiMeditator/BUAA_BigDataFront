@@ -12,9 +12,9 @@
     <div class="table">
       <el-table :data="filterd_images">
         <el-table-column prop="name" label="名称" sortable></el-table-column>
-        <el-table-column prop="tag" label="版本"></el-table-column>
-        <el-table-column prop="id" label="ID"></el-table-column>
-        <el-table-column prop="shortid" label="SHORT ID"></el-table-column>
+        <el-table-column prop="tag" label="版本" sortable></el-table-column>
+        <el-table-column prop="id" label="ID" sortable></el-table-column>
+        <el-table-column prop="shortid" label="SHORT ID" sortable></el-table-column>
         <el-table-column prop="created" label="创建时间" sortable></el-table-column>
         <el-table-column prop="size" label="大小(B)" sortable></el-table-column>
         <el-table-column label="操作">

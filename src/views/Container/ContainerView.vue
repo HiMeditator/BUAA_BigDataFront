@@ -11,10 +11,20 @@
 
     <div class="table">
       <el-table :data="filterd_images">
-        <el-table-column prop="name" label="NAME" sortable></el-table-column>
-        <el-table-column prop="shortID" label="SHORT ID"></el-table-column>
-        <el-table-column prop="image" label="IMAGE"></el-table-column>
-        <el-table-column prop="status" label="STATUS"></el-table-column>
+        <el-table-column prop="name" label="容器名称" sortable></el-table-column>
+        <el-table-column prop="id" label="SHORT ID" sortable></el-table-column>
+        <el-table-column prop="imageName" label="容器镜像" sortable></el-table-column>
+        <el-table-column prop="status" label="容器状态" sortable></el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-link type="success" @click="func(scope.row)">查看</el-link>&nbsp; 
+            <el-link type="warning" @click="func(scope.row)">启动</el-link>&nbsp; 
+            <el-link type="danger" @click="func(scope.row)">停止</el-link>&nbsp; 
+            <el-link type="success" @click="func(scope.row)">重启</el-link>&nbsp; 
+            <el-link type="warning" @click="func(scope.row)">提交</el-link>&nbsp; 
+            <el-link type="danger" @click="func(scope.row)">删除</el-link> 
+          </template>
+        </el-table-column>
       </el-table>
     </div>
 
@@ -27,7 +37,8 @@ export default {
   data(){
     return {
       search: '',
-      images:[]
+      rawContainers: [],
+      containers: []
     }
   },
   mounted(){
@@ -35,14 +46,40 @@ export default {
   },
   computed: {
     filterd_images() {
-      if (this.search === '') return this.images
+      if (this.search === '') return this.containers
       else return this.images.filter(val => {
         return val.name.includes(this.search)
       })
     }
   },
+  mounted(){
+    this.getContainerData()
+  },
   methods: {
-
+    getContainerData(){
+      this.$axios({
+        method: 'GET',
+        url: '/list_containers'
+      }).then(res => {
+        this.rawContainers = res.data
+        this.containers = []
+        for(let entry of this.rawContainers){
+          let display = {}
+          display.name = entry.name===""?entry.short_id:entry.name
+          display.id = entry.short_id
+          display.status = entry.status
+          display.imageName = entry.image.tags[0].split('/')[1]
+          display.longID = entry.id
+          display.image = entry.image
+          display.labels = entry.labels
+          this.containers.push(display)
+        }
+        console.log(this.rawContainers)
+        console.log(this.containers)
+      }).catch(err => {
+        console.log(err)
+      })
+    }
   }
 }
 </script>
