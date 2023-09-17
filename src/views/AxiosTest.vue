@@ -4,7 +4,7 @@
     <el-form label-width="120px" class="axios-form">
       <el-form-item label="请求地址">
         <el-input  v-model="form.URL">
-          <template slot="prepend">http://</template>
+          <template slot="prepend">{{ baseURL }}</template>
         </el-input>
       </el-form-item>
 
@@ -12,8 +12,15 @@
         <el-input type="textarea" v-model="form.params" :rows="6"></el-input>
       </el-form-item>
 
+      <el-form-item label="使用默认地址">
+        <el-radio-group v-model="form.baseOption">
+          <el-radio label="0">否</el-radio>
+          <el-radio label="1">是</el-radio>
+        </el-radio-group>
+      </el-form-item>
+
       <el-form-item label="请求数据选项">
-        <el-radio-group v-model="form.option">
+        <el-radio-group v-model="form.dataOption">
           <el-radio label="1">获取的是JSON数据</el-radio>
           <el-radio label="2">获取并打开文件</el-radio>
           <el-radio label="3">获取并下载文件</el-radio>
@@ -45,29 +52,36 @@ export default {
       form:{
         URL: 'api.oick.cn/qrcode/api.php',
         params: '{"text":"Data-Exp-Group26","size":"200px"}',
-        option: '1',
+        baseOption: '0',
+        dataOption: '1',
         result: '',
         log: ''
       },
       AxiosObject: {}
     }
   },
+  computed:{
+    baseURL(){
+      return this.form.baseOption==='0'?'http://':this.$axios.defaults.baseURL
+    }
+  },
   methods: {
     GetRequest(){
       this.AxiosObject = {
         method: 'GET',
-        url: 'http://' + this.form.URL,
+        url: this.baseURL + this.form.URL,
         params: JSON.parse(this.form.params),
-        responseType: this.form.option==='1'?'':'blob'
+        responseType: this.form.dataOption==='1'?'':'blob'
       }
       this.$axios(this.AxiosObject).then(res =>{
         this.form.result = `Status: ${res.status}\n\n${JSON.stringify(res)}`
-        if(this.form.option!=='1'){
+        console.log(res)
+        if(this.form.dataOption!=='1'){
           const blob = new Blob([res.data],{type:res.data.type})
           let link = document.createElement('a')
           link.href = window.URL.createObjectURL(blob)
           link.target = '_blank'
-          if(this.form.option==='3') link.download = 'file'
+          if(this.form.dataOption==='3') link.download = 'file'
           document.body.appendChild(link)
           link.click()
         }
@@ -80,9 +94,9 @@ export default {
     PostRequest(){
       this.AxiosObject = {
         method: 'POST',
-        url: 'http://' + this.form.URL,
+        url: this.baseURL + this.form.URL,
         data: JSON.parse(this.form.params),
-        responseType: this.form.option==='1'?'':'blob'
+        responseType: this.form.dataOption==='1'?'':'blob'
       }
       this.$axios(this.AxiosObject).then(res =>{
         this.form.result = `Status: ${res.status}\n\n${JSON.stringify(res)}`
@@ -96,9 +110,9 @@ export default {
       try{
         this.AxiosObject = {
           method: '',
-          url: 'http://' + this.form.URL,
+          url: this.baseURL + this.form.URL,
           params: JSON.parse(this.form.params),
-          responseType: this.form.option==='1'?'':'blob'
+          responseType: this.form.dataOption==='1'?'':'blob'
         }
         this.form.result = JSON.stringify(this.AxiosObject)
       }

@@ -3,8 +3,8 @@
 
     <div class="header clearfix">
       <div class="combo">
-        <span>镜像管理</span>
-        <el-input class="input" placeholder="搜索镜像名" v-model="search">
+        <span>容器管理</span>
+        <el-input class="input" placeholder="搜索容器名" v-model="search">
         </el-input>
       </div>
     </div>
@@ -12,11 +12,9 @@
     <div class="table">
       <el-table :data="filterd_images">
         <el-table-column prop="name" label="NAME" sortable></el-table-column>
-        <el-table-column prop="tag" label="TAG"></el-table-column>
-        <el-table-column prop="ID" label="ID"></el-table-column>
         <el-table-column prop="shortID" label="SHORT ID"></el-table-column>
-        <el-table-column prop="created" label="CREATED" sortable></el-table-column>
-        <el-table-column prop="size" label="SIZE" sortable></el-table-column>
+        <el-table-column prop="image" label="IMAGE"></el-table-column>
+        <el-table-column prop="status" label="STATUS"></el-table-column>
       </el-table>
     </div>
 
@@ -29,24 +27,7 @@ export default {
   data(){
     return {
       search: '',
-      images:[
-        {
-          name: 'image-01',
-          tag: 'kail linux',
-          ID:'3w35uhrwiuefg',
-          shortID:'3ui2',
-          created:'2023-09-17T10:11',
-          size:'1783422k'
-        },
-        {
-          name: 'image-02',
-          tag: 'ubuntu',
-          ID:'r4i3qwf8s9f',
-          shortID:'8saf',
-          created:'2023-09-17T10:18',
-          size:'1183222k'
-        }
-      ]
+      images:[]
     }
   },
   mounted(){
@@ -69,7 +50,7 @@ export default {
 <style scoped>
 .header {
   height: 180px;
-  background-image: url('../assets/img/main/database.jpg');
+  background-image: url('../../assets/img/main/kubernets.jpg');
   background-size: 100%;
   background-position: 0 -200px;
   text-align: left;

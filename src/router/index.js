@@ -13,12 +13,12 @@ const routes = [
   {
     path: '/image',
     name: 'image',
-    component: () => import('../views/ImageView.vue')
+    component: () => import('../views/Image/ImageView.vue')
   },
   {
     path: '/container',
     name: 'container',
-    component: () => import('../views/ContainerView.vue')
+    component: () => import('../views/Container/ContainerView.vue')
   },
   {
     path: '/app-deploy',

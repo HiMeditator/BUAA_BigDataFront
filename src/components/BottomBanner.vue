@@ -16,7 +16,7 @@
         Powered by 2022-2023 Data-Exp-Group26
       </p>
       <p>
-        All rights reserved.
+        No rights reserved.
       </p>
       <p>
         中国·北京·海淀
