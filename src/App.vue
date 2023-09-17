@@ -2,7 +2,7 @@
   <div id="app">
     <top-banner />
     <div class="main-struct clearfix">
-      <div style="height:40px;"></div>
+      <div style="height:50px;"></div>
       <router-view />
     </div>
     <bottom-banner />

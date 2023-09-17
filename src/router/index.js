@@ -11,9 +11,24 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/image',
+    name: 'image',
+    component: () => import('../views/ImageView.vue')
+  },
+  {
+    path: '/container',
+    name: 'container',
+    component: () => import('../views/ContainerView.vue')
+  },
+  {
+    path: '/app-deploy',
+    name: 'app-deploy',
+    component: () => import('../views/AppDeploy.vue')
+  },
+  {
     path: '/axios-test',
     name: 'axios-test',
-    component: () => import('../views/AxiosTestView.vue')
+    component: () => import('../views/AxiosTest.vue')
   }
 ]
 

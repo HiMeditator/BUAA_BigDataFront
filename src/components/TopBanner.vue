@@ -9,6 +9,9 @@
 
     <div class="top-mid">
       <ul>
+        <li><a href="/image">镜像管理</a></li>
+        <li><a href="/container">容器管理</a></li>
+        <li><a href="/app-deploy">应用部署</a></li>
         <li><a href="/axios-test">Axios Test</a></li>
       </ul>
     </div>

@@ -4,7 +4,7 @@
     <el-form label-width="120px" class="axios-form">
       <el-form-item label="请求地址">
         <el-input  v-model="form.URL">
-          <template slot="prepend">Http://</template>
+          <template slot="prepend">http://</template>
         </el-input>
       </el-form-item>
 
