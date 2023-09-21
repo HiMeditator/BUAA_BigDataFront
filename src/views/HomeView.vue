@@ -6,7 +6,10 @@
 
 <script>
 export default {
-  name: 'HomeView'
+  name: 'HomeView',
+  mounted(){
+    this.$router.push('/image')
+  }
 }
 </script>
 

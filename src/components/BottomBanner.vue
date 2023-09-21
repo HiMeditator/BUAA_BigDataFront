@@ -19,7 +19,7 @@
         No rights reserved.
       </p>
       <p>
-        中国·北京·海淀
+        2023 BUAA
       </p>
     </div>
   </div>

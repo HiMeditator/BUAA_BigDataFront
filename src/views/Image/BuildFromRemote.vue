@@ -1,6 +1,6 @@
 <template>
   <div class="bfr">
-    <el-input v-model="URL" placeholder="请输入URL"></el-input>
+    <el-input v-model="URL" placeholder="请输入镜像名称"></el-input>
     <div class="process clearfix">
       <div :style="{color: infoColor}">{{ process }}</div>
       <el-button type="primary" @click="pullImage" class="sub-btn">立即创建</el-button>
@@ -23,7 +23,7 @@ export default {
       this.process = '正在拉取...'
       this.infoColor = '#409EFF'
       let form = new FormData();
-      form.append('repository', this.url);
+      form.append('repository', this.URL);
       this.$axios.post('/pull_image', form).then((res) => {
         if(res.data === 'pull success'){
           this.process = '镜像拉取完成';

@@ -109,17 +109,18 @@ export default {
       })
     },
     deleteImage(arg){
-      const index = this.images.indexOf(arg);
-      if(confirm('确认删除?')) this.images.splice(index, 1);
+      const index = this.images.indexOf(arg)
+      if(confirm('确认删除?')) this.images.splice(index, 1)
+      else return
       console.log(index)
       let form = new FormData()
-      form.append('image_id', item.longId)
+      form.append('image_id', arg.id)
       this.$axios.post('/remove_image', form).then(res => {
-        if(res.data === 'delete success') alert(`镜像${arg.id}已成功删除`);
-        else throw res.data;
+        if(res.data === 'delete success') alert(`镜像${arg.id}已成功删除`)
+        else throw res.data
       }).catch(() => {
-        alert(`镜像${arg.id}删除失败`);
-        this.getImageData();
+        alert(`镜像${arg.id}删除失败`)
+        this.getImageData()
       })
     }
   }
